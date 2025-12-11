@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenue à notre mariage</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="splash">
+    <h1>Bienvenue à notre mariage !</h1>
+  </div>
+
+  <div id="main" style="display:none;">
+    <h2>Recherchez votre nom</h2>
+    <input type="text" id="nameInput" placeholder="Votre nom">
+    <button id="searchBtn">Chercher</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue à notre mariage</title>
+  <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <!-- Écran d'accueil -->
+    <div id="welcomeScreen">
+        <div class="background"></div>
+        <div class="overlay"></div>
+        <div class="welcome-content">
+            <div class="welcome-card">
+                <svg class="heart-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <h1 class="welcome-title">Bienvenue à notre mariage</h1>
+                <div class="divider"></div>
+                <div class="couple-names">Bintou & Mari</div>
+                <div class="wedding-date">13 décembre 2025</div>
+                <button class="btn-primary" onclick="showSearch()">Trouver ma table</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Écran de recherche -->
+    <div id="searchScreen">
+        <div class="search-container">
+            <div class="search-card">
+                <div class="search-icon-top">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                
+                <h2 class="search-title">Trouvez votre numéro de table</h2>
+                
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    class="search-input" 
+                    placeholder="Entrez votre nom complet"
+                    oninput="handleSearch(this.value)"
+                />
+                
+                <div id="resultBox"></div>
+                
+                <button class="btn-back" onclick="showWelcome()">← Retour à l'accueil</button>
+            </div>
+            
+            <p class="footer-text">Nous sommes ravis de vous accueillir</p>
+        </div>
+    </div>
+  <script src="app.js"></script>
+
+</body>
+</html>

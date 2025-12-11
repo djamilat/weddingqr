@@ -1,0 +1,274 @@
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+        }
+
+        /* Écran d'accueil */
+        #welcomeScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200');
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px);
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(156,100,117,0.4), rgba(114,47,55,0.5));
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 448px;
+            width: 100%;
+        }
+
+        .welcome-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .heart-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            color: #E8B4BC;
+        }
+
+        .welcome-title {
+            font-size: 36px;
+            color: white;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #E8B4BC, transparent);
+            margin: 24px 0;
+        }
+
+        .couple-names {
+            font-size: 28px;
+            color: #F3D5DA;
+            margin-bottom: 8px;
+        }
+
+        .wedding-date {
+            font-size: 18px;
+            color: rgba(232, 180, 188, 0.9);
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(to right, #722F37, #5C1F26);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 9999px;
+            font-size: 18px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #5C1F26, #4A1820);
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        /* Écran de recherche */
+        #searchScreen {
+            display: none;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background-color: #F9E8EB;
+        }
+
+        #searchScreen.active {
+            display: flex;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 448px;
+        }
+
+        .search-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            padding: 32px;
+            position: relative;
+        }
+
+        .search-icon-top {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to right, #722F37, #5C1F26);
+            border-radius: 50%;
+            padding: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+
+        .search-icon {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .search-title {
+            font-size: 28px;
+            color: #1F2937;
+            text-align: center;
+            margin-top: 16px;
+            margin-bottom: 32px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px;
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 9999px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 300;
+            transition: all 0.3s;
+            outline: none;
+            margin-bottom: 32px;
+        }
+
+        .search-input:focus {
+            border-color: #722F37;
+        }
+
+        .result-box {
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result-not-found {
+            background: #FEF2F2;
+            border: 2px solid #FECACA;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .result-not-found-title {
+            color: #991B1B;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .result-not-found-text {
+            color: #DC2626;
+            font-size: 14px;
+        }
+
+        .result-found {
+            background: linear-gradient(135deg, #722F37, #5C1F26);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+        }
+
+        .result-label {
+            color: #F3D5DA;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .result-table {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            width: 100%;
+            margin-top: 32px;
+            color: #722F37;
+            background: transparent;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .btn-back:hover {
+            color: #5C1F26;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #722F37;
+            margin-top: 24px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 640px) {
+            .welcome-title {
+                font-size: 28px;
+            }
+            .couple-names {
+                font-size: 24px;
+            }
+            .search-title {
+                font-size: 24px;
+            }
+        }
