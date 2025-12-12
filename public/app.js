@@ -90,7 +90,7 @@ function showGuestTable(guest) {
   resultBox.innerHTML = `
     <div class="result-box">
       <div class="result-found">
-        <p class="result-label">Vous êtes à la table</p>
+        <p class="result-label">${guest.name} Vous êtes à la table</p>
         <p class="result-table">${guest.table_number}</p>
       </div>
     </div>

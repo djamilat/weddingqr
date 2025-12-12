@@ -262,11 +262,13 @@
   }
 
   .result-found {
-      background: linear-gradient(135deg, #722F37, #5C1F26);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-  }
+    background: linear-gradient(135deg, #722F37, #5C1F26);
+    border-radius: 16px;
+    padding: 32px 20px; /* Augmente padding horizontal */
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+    max-width: 100%;
+    overflow: hidden; /* Empêche le débordement */
+}
 
   .result-label {
       color: #F3D5DA;
