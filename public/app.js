@@ -68,7 +68,7 @@ function displaySuggestions(guests) {
       <p class="suggestions-title">Plusieurs invités trouvés :</p>
       ${guests.map(guest => `
         <div class="suggestion-item" onclick='selectGuest(${JSON.stringify(guest)})'>
-          <div class="suggestion-name">${guest.full_name}</div>
+          <div class="suggestion-name">${guest.name}</div>
           <div class="suggestion-arrow">→</div>
         </div>
       `).join('')}
@@ -80,7 +80,7 @@ function selectGuest(guest) {
   // Effacer les suggestions
   document.getElementById('suggestionsList').innerHTML = '';
   // Mettre à jour le champ de recherche
-  document.getElementById('searchInput').value = guest.full_name;
+  document.getElementById('searchInput').value = guest.name;
   // Afficher la table
   showGuestTable(guest);
 }
@@ -90,7 +90,7 @@ function showGuestTable(guest) {
   resultBox.innerHTML = `
     <div class="result-box">
       <div class="result-found">
-        <p class="result-label">Votre table</p>
+        <p class="result-label">Vous êtes à la table</p>
         <p class="result-table">${guest.table_number}</p>
       </div>
     </div>
