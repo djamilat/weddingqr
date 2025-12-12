@@ -1,6 +1,3 @@
-const SUPABASE_URL = 'https://rkrgtrzngfrwthbyywiv.supabase.co/rest/v1';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrcmd0cnpuZ2Zyd3RoYnl5d2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NDg1MjEsImV4cCI6MjA4MTEyNDUyMX0.dFSOdw5aI8a6jzvpd4wpCqagrLmrzd9P-8cT5s8GdMg'; // remplace par ta clé
-
 function showSearch() {
   document.getElementById('welcomeScreen').style.display = 'none';
   document.getElementById('searchScreen').classList.add('active');
@@ -21,18 +18,11 @@ function handleSearch(name) {
     return;
   }
 
-  // 🔥 Appel à Supabase REST API
-  fetch(`${SUPABASE_URL}/invites?name=eq.${encodeURIComponent(name)}`, {
-    method: 'GET',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json'
-    }
-  })
+  // 🔥 Appel à notre API backend
+  fetch(`/api/invite?name=${encodeURIComponent(name)}`)
     .then(res => res.json())
     .then(data => {
-      if (!data || data.length === 0) {
+      if (!data.found) {
         resultBox.innerHTML = `
           <div class="result-box">
             <div class="result-not-found">
@@ -46,7 +36,7 @@ function handleSearch(name) {
           <div class="result-box">
             <div class="result-found">
               <p class="result-label">Votre table</p>
-              <p class="result-table">${data[0].table_number}</p>
+              <p class="result-table">${data.guest.table_number}</p>
             </div>
           </div>
         `;
