@@ -1,3 +1,6 @@
+const SUPABASE_URL = 'https://rkrgtrzngfrwthbyywiv.supabase.co/rest/v1';
+const SUPABASE_KEY = 'TON_SUPABASE_API_KEY'; // remplace par ta clé
+
 function showSearch() {
   document.getElementById('welcomeScreen').style.display = 'none';
   document.getElementById('searchScreen').classList.add('active');
@@ -18,11 +21,18 @@ function handleSearch(name) {
     return;
   }
 
-  // 🔥 Nouvelle API pour SQLite
-  fetch(`/api/invite?name=${encodeURIComponent(name)}`)
+  // 🔥 Appel à Supabase REST API
+  fetch(`${SUPABASE_URL}/invites?name=eq.${encodeURIComponent(name)}`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  })
     .then(res => res.json())
     .then(data => {
-      if (!data.found) {
+      if (!data || data.length === 0) {
         resultBox.innerHTML = `
           <div class="result-box">
             <div class="result-not-found">
@@ -36,7 +46,7 @@ function handleSearch(name) {
           <div class="result-box">
             <div class="result-found">
               <p class="result-label">Votre table</p>
-              <p class="result-table">${data.guest.table_number}</p>
+              <p class="result-table">${data[0].table_number}</p>
             </div>
           </div>
         `;
@@ -54,4 +64,3 @@ function handleSearch(name) {
       `;
     });
 }
-

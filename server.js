@@ -1,24 +1,17 @@
-const express = require('express');
-const Database = require('better-sqlite3');
-const path = require('path');
+const fetch = require('node-fetch');
 
-const app = express();
-const db = new Database('invites.db');
-
-app.use(express.static('public'));
-
-// API pour récupérer un invité par nom
-app.get('/api/invite', (req, res) => {
+app.get('/api/invites', async (req, res) => {
   const name = req.query.name;
   if (!name) return res.json({ error: "Missing name" });
 
-  // Recherche insensible à la casse (Koné = kone = KONE)
-  const row = db.prepare("SELECT * FROM invites WHERE LOWER(TRIM(name)) = LOWER(TRIM(?))").get(name);
+  const response = await fetch(`https://rkrgtrzngfrwthbyywiv.supabase.co/rest/v1/invites?name=eq.${encodeURIComponent(name)}`, {
+    headers: {
+      'apikey': 'TON_SUPABASE_API_KEY',
+      'Authorization': 'Bearer TON_SUPABASE_API_KEY'
+    }
+  });
 
-  if (!row) return res.json({ found: false });
-  return res.json({ found: true, guest: row });
+  const data = await response.json();
+  if (data.length === 0) return res.json({ found: false });
+  res.json({ found: true, guest: data[0] });
 });
-
-// Lancer le serveur
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Serveur lancé sur le port ${port}`));
