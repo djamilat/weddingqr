@@ -20,25 +20,17 @@ app.get("/api/invite", async (req, res) => {
   const name = req.query.name;
   if (!name) return res.json({ found: false });
 
-  try {
-    const { data, error } = await supabase
-      .from("invites")
-      .select("*")
-      .ilike("name", name); // ignore la casse
+  const { data, error } = await supabase
+    .from("invites")
+    .select("*")
+    .ilike("name", `%${name}%`); // ← contient le texte, insensible à la casse
 
-    if (error) {
-      console.error("Erreur Supabase:", error);
-      return res.status(500).json({ error: "Erreur serveur" });
-    }
+  if (error) return res.status(500).json({ error: "Erreur serveur" });
+  if (!data || data.length === 0) return res.json({ found: false });
 
-    if (!data || data.length === 0) return res.json({ found: false });
-
-    res.json({ found: true, guest: data[0] });
-  } catch (err) {
-    console.error("Erreur serveur:", err);
-    res.status(500).json({ error: "Erreur serveur" });
-  }
+  res.json({ found: true, guests: data }); // renvoie tous les correspondants
 });
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Serveur démarré sur le port ${PORT}`);

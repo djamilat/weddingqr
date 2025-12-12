@@ -1,15 +1,3 @@
-function showSearch() {
-  document.getElementById('welcomeScreen').style.display = 'none';
-  document.getElementById('searchScreen').classList.add('active');
-}
-
-function showWelcome() {
-  document.getElementById('searchScreen').classList.remove('active');
-  document.getElementById('welcomeScreen').style.display = 'flex';
-  document.getElementById('searchInput').value = '';
-  document.getElementById('resultBox').innerHTML = '';
-}
-
 function handleSearch(name) {
   const resultBox = document.getElementById('resultBox');
 
@@ -31,15 +19,24 @@ function handleSearch(name) {
             </div>
           </div>
         `;
-      } else {
+      } else if (data.guests.length === 1) {
+        // Un seul invité
         resultBox.innerHTML = `
           <div class="result-box">
             <div class="result-found">
               <p class="result-label">Votre table</p>
-              <p class="result-table">${data.guest.table_number}</p>
+              <p class="result-table">${data.guests[0].table_number}</p>
             </div>
           </div>
         `;
+      } else {
+        // Plusieurs correspondances : liste cliquable
+        window.guests = data.guests; // stocke temporairement
+        resultBox.innerHTML = data.guests.map((g, i) => `
+          <div class="guest-option" onclick="selectGuest(${i})">
+            ${g.name} - ${g.table_number}
+          </div>
+        `).join('');
       }
     })
     .catch(err => {
@@ -53,4 +50,18 @@ function handleSearch(name) {
         </div>
       `;
     });
+}
+
+// Fonction appelée quand l’utilisateur clique sur un invité
+function selectGuest(index) {
+  const guest = window.guests[index];
+  const resultBox = document.getElementById('resultBox');
+  resultBox.innerHTML = `
+    <div class="result-box">
+      <div class="result-found">
+        <p class="result-label">Votre table</p>
+        <p class="result-table">${guest.table_number}</p>
+      </div>
+    </div>
+  `;
 }
