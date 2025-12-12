@@ -86,6 +86,16 @@ function selectGuest(guest) {
 }
 
 function showGuestTable(guest) {
+    const tableName = guest.table_number;
+  let fontSize = '48px';
+  
+  if (tableName.length > 15) {
+    fontSize = '28px';
+  } else if (tableName.length > 10) {
+    fontSize = '36px';
+  } else if (tableName.length > 6) {
+    fontSize = '42px';
+  }
   const resultBox = document.getElementById('resultBox');
   resultBox.innerHTML = `
     <div class="result-box">
