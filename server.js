@@ -1,19 +1,20 @@
+require('dotenv').config();
 const express = require("express");
 const { createClient } = require("@supabase/supabase-js");
-require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(express.static("public"));
-
+// Crée le client Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
 );
 
-// 🔥 Endpoint pour rechercher les invités (recherche "contains")
+app.use(express.json());
+app.use(express.static("public"));
+
+// 🔥 Endpoint pour rechercher les invités "contains"
 app.get("/api/invite", async (req, res) => {
   const name = req.query.name;
   if (!name) return res.json({ found: false });
@@ -22,7 +23,7 @@ app.get("/api/invite", async (req, res) => {
     const { data, error } = await supabase
       .from("invites")
       .select("*")
-      .ilike("name", `%${name}%`); // "contains" insensible à la casse
+      .ilike("name", `%${name}%`); // "contains", insensible à la casse
 
     if (error) throw error;
     if (!data || data.length === 0) return res.json({ found: false });

@@ -12,7 +12,6 @@ function showWelcome() {
 
 function handleSearch(name) {
   const resultBox = document.getElementById('resultBox');
-
   if (name.trim() === '') {
     resultBox.innerHTML = '';
     return;
@@ -26,6 +25,7 @@ function handleSearch(name) {
       } else if (data.guests.length === 1) {
         resultBox.innerHTML = `<p>Votre table : ${data.guests[0].table_number}</p>`;
       } else {
+        // Plusieurs correspondances
         window.guests = data.guests;
         resultBox.innerHTML = data.guests.map((g, i) => `
           <div class="guest-option" onclick="selectGuest(${i})">
