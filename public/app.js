@@ -1,5 +1,5 @@
 const SUPABASE_URL = 'https://rkrgtrzngfrwthbyywiv.supabase.co/rest/v1';
-const SUPABASE_KEY = 'TON_SUPABASE_API_KEY'; // remplace par ta clé
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrcmd0cnpuZ2Zyd3RoYnl5d2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NDg1MjEsImV4cCI6MjA4MTEyNDUyMX0.dFSOdw5aI8a6jzvpd4wpCqagrLmrzd9P-8cT5s8GdMg'; // remplace par ta clé
 
 function showSearch() {
   document.getElementById('welcomeScreen').style.display = 'none';
