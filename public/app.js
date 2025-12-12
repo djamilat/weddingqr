@@ -90,7 +90,7 @@ function showGuestTable(guest) {
   let fontSize = '48px';
   
   if (tableName.length > 15) {
-    fontSize = '28px';
+    fontSize = '20px';
   } else if (tableName.length > 10) {
     fontSize = '36px';
   } else if (tableName.length > 6) {
