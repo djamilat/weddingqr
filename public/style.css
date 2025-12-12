@@ -282,9 +282,11 @@
     color: white;
     font-size: clamp(24px, 8vw, 48px); /* Taille adaptative automatique */
     font-weight: bold;
-    word-wrap: break-word;
     line-height: 1.2;
     max-width: 100%;
+    white-space: nowrap; /* ← Empêche les sauts de ligne */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Au cas où c'est vraiment trop long */
 }
 
   .btn-back {
