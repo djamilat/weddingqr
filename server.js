@@ -26,6 +26,8 @@ app.get('/api/invite', (req, res) => {
 });
 
 // Lancer le serveur
-app.listen(3000, () => {
-  console.log("Serveur lancé sur http://localhost:3000");
+const port = process.env.PORT || 3000; // utilise le port fourni par Railway
+app.listen(port, () => {
+  console.log(`Serveur lancé sur le port ${port}`);
 });
+
