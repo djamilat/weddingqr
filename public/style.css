@@ -278,11 +278,14 @@
       margin-bottom: 8px;
   }
 
-  .result-table {
-      color: white;
-      font-size: 48px;
-      font-weight: bold;
-  }
+.result-table {
+    color: white;
+    font-size: clamp(24px, 8vw, 48px); /* Taille adaptative automatique */
+    font-weight: bold;
+    word-wrap: break-word;
+    line-height: 1.2;
+    max-width: 100%;
+}
 
   .btn-back {
       width: 100%;
